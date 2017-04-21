@@ -1,0 +1,1169 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for node-npmtest-mailchimp/node_modules/mailchimp/lib/mailchimp/MailChimpOAuth.js</title>
+    <meta charset="utf-8">
+    <style>
+        body, html {
+            margin:0; padding: 0;
+        }
+        body {
+            font-family: Arial, Helvetica;
+            font-size: 10pt;
+        }
+        div.header, div.footer {
+            background: #eee;
+            padding: 1em;
+        }
+        div.header {
+            height: 160px;
+            padding: 0 1em 0 1em;
+            z-index: 100;
+            position: fixed;
+            top: 0;
+            border-bottom: 1px solid #666;
+            width: 100%;
+        }
+        div.footer {
+            border-top: 1px solid #666;
+        }
+        div.body {
+            margin-top: 170px;
+        }
+        div.meta {
+            font-size: 90%;
+            text-align: center;
+        }
+        h1, h2, h3 {
+            font-weight: normal;
+        }
+        h1 {
+            font-size: 12pt;
+        }
+        h2 {
+            font-size: 10pt;
+        }
+        pre {
+            font-family: Menlo, Monaco, Consolas, Courier New, monospace;
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+            tab-size: 2;
+        }
+
+        div.path { font-size: 110%; }
+        div.path a:link, div.path a:visited { color: #000; }
+        table.coverage { border-collapse: collapse; margin:0; padding: 0 }
+
+        table.coverage td {
+            margin: 0;
+            padding: 0;
+            color: #111;
+            vertical-align: top;
+        }
+        table.coverage td.line-count {
+            width: 50px;
+            text-align: right;
+            padding-right: 5px;
+        }
+        table.coverage td.line-coverage {
+            color: #777 !important;
+            text-align: right;
+            border-left: 1px solid #666;
+            border-right: 1px solid #666;
+        }
+
+        table.coverage td.text {
+        }
+
+        table.coverage td span.cline-any {
+            display: inline-block;
+            padding: 0 5px;
+            width: 40px;
+        }
+        table.coverage td span.cline-neutral {
+            background: #eee;
+        }
+        table.coverage td span.cline-yes {
+            background: #b5d592;
+            color: #999;
+        }
+        table.coverage td span.cline-no {
+            background: #fc8c84;
+        }
+
+        .cstat-yes { color: #111; }
+        .cstat-no { background: #fc8c84; color: #111; }
+        .fstat-no { background: #ffc520; color: #111 !important; }
+        .cbranch-no { background:  yellow !important; color: #111; }
+
+        .cstat-skip { background: #ddd; color: #111; }
+        .fstat-skip { background: #ddd; color: #111 !important; }
+        .cbranch-skip { background: #ddd !important; color: #111; }
+
+        .missing-if-branch {
+            display: inline-block;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: black;
+            color: yellow;
+        }
+
+        .skip-if-branch {
+            display: none;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: #ccc;
+            color: white;
+        }
+
+        .missing-if-branch .typ, .skip-if-branch .typ {
+            color: inherit !important;
+        }
+
+        .entity, .metric { font-weight: bold; }
+        .metric { display: inline-block; border: 1px solid #333; padding: 0.3em; background: white; }
+        .metric small { font-size: 80%; font-weight: normal; color: #666; }
+
+        div.coverage-summary table { border-collapse: collapse; margin: 3em; font-size: 110%; }
+        div.coverage-summary td, div.coverage-summary table  th { margin: 0; padding: 0.25em 1em; border-top: 1px solid #666; border-bottom: 1px solid #666; }
+        div.coverage-summary th { text-align: left; border: 1px solid #666; background: #eee; font-weight: normal; }
+        div.coverage-summary th.file { border-right: none !important; }
+        div.coverage-summary th.pic { border-left: none !important; text-align: right; }
+        div.coverage-summary th.pct { border-right: none !important; }
+        div.coverage-summary th.abs { border-left: none !important; text-align: right; }
+        div.coverage-summary td.pct { text-align: right; border-left: 1px solid #666; }
+        div.coverage-summary td.abs { text-align: right; font-size: 90%; color: #444; border-right: 1px solid #666; }
+        div.coverage-summary td.file { text-align: right; border-left: 1px solid #666; white-space: nowrap;  }
+        div.coverage-summary td.pic { min-width: 120px !important;  }
+        div.coverage-summary a:link { color: #000; }
+        div.coverage-summary a:visited { color: #333; }
+        div.coverage-summary tfoot td { border-top: 1px solid #666; }
+
+        div.coverage-summary .yui3-datatable-sort-indicator, div.coverage-summary .dummy-sort-indicator {
+            height: 10px;
+            width: 7px;
+            display: inline-block;
+            margin-left: 0.5em;
+        }
+        div.coverage-summary .yui3-datatable-sort-indicator {
+            background: no-repeat scroll 0 0 transparent;
+        }
+        div.coverage-summary .yui3-datatable-sorted .yui3-datatable-sort-indicator {
+            background-position: 0 -20px;
+        }
+        div.coverage-summary .yui3-datatable-sorted-desc .yui3-datatable-sort-indicator {
+            background-position: 0 -10px;
+        }
+
+        .high { background: #b5d592 !important; }
+        .medium { background: #ffe87c !important; }
+        .low { background: #fc8c84 !important; }
+
+        span.cover-fill, span.cover-empty {
+            display:inline-block;
+            border:1px solid #444;
+            background: white;
+            height: 12px;
+        }
+        span.cover-fill {
+            background: #ccc;
+            border-right: 1px solid #444;
+        }
+        span.cover-empty {
+            background: white;
+            border-left: none;
+        }
+        span.cover-full {
+            border-right: none !important;
+        }
+        pre.prettyprint {
+            border: none !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+        .com { color: #999 !important; }
+        .ignore-none { color: #999; font-weight: normal; }
+
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1 style="font-weight: bold;">
+        <a href="https://github.com/npmtest/node-npmtest-mailchimp">npmtest-mailchimp (v0.0.1)</a>
+    </h1>
+    <h1>Code coverage report for <span class="entity">node-npmtest-mailchimp/node_modules/mailchimp/lib/mailchimp/MailChimpOAuth.js</span></h1>
+    <h2>
+        
+        Statements: <span class="metric">8.11% <small>(9 / 111)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Branches: <span class="metric">0% <small>(0 / 58)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Functions: <span class="metric">0% <small>(0 / 12)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Lines: <span class="metric">8.11% <small>(9 / 111)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../../../index.html">All files</a> &#187; <a href="index.html">node-npmtest-mailchimp/node_modules/mailchimp/lib/mailchimp/</a> &#187; MailChimpOAuth.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">var http = require('http'),
+    https = require('http'),
+    util = require('util'),
+    url = require('url'),
+    querystring = require('querystring'),
+    EventEmitter = require('events').EventEmitter,
+    fs = require('fs'),
+    request = require('request');
+&nbsp;
+/**
+ * Provides functionality for OAuth2 authorization with MailChimp. A server is
+ * set up that listens for requests from MailChimp that are made upon
+ * successful user authentication. Using this server the whole workflow
+ * necessary to authorize against MailChimp is made available.
+ *
+ * The workflow using this module in short is as follows. An example can be
+ * found in the README.
+ *
+ *  1) Instatiate MailChimpOAuth.
+ *  2) Send the user to the MailChimp login form using the url returned from
+ *     MailChimpOAuth.getAuthorizeUri();
+ *  3) Listen for the 'authed' event and pass MailChimpOAuth.api as th API key
+ *     to whatever MailChimp API methods you want to use.
+ *
+ * Details on the process and further information on how to set everything up
+ * are available in the MailChimp API docs.
+ *
+ * @see http://apidocs.mailchimp.com/oauth2/
+ *
+ * Available options are:
+ * `clientId` The clientId can be obtained from MailChimp, please refer to the API docs on how to do this. The clientId is a required parameter.
+ * `clientSecret` The clientSecret can be obtained from MailChimp, please refer to the API docs on how to do this. The clientSecret is a required parameter.
+ * `redirectUri` Redirect URI from MailChimp App Configuration
+ * `ownServer` Boolean to enable own custom server for listening to redirect URI. Defaults to false.
+ * `addPort` Boolean to add value of port number in redirectUri defaults to false.
+ * `port` The port the server is going to listen on. Defaults to 8100.
+ These fields are not needed if ownServer is false
+ * `finalUri` After a successful authorization on the MailChimp website the user is redirected to this URI, if any.
+ * `secure` Credentials in the form {key:path to ssl key file, cert: path to ssl certificate file} . If present HTTPS support is enabled for the server. Defaults to false.
+ You can register the following events:
+&nbsp;
+ * `error` This event is emitted when an error occured and receives one argument that contains the error message.
+ * `authed` Emitted when the OAuth was completed successfully. Receives one argument which represents the API key that can be passed on to other API functionality.
+ *
+ * @param options Configuration options
+ * @return Nothing. Emits an 'authed' event instead which indicates everything
+ *         went fine
+ */
+<span class="fstat-no" title="function not covered" >function MailChimpOAuth(options) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  var self = this;</span>
+<span class="cstat-no" title="statement not covered" >  options = options || {};</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  EventEmitter.call(this);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  this.httpPort = options.port || 8100;</span>
+<span class="cstat-no" title="statement not covered" >  this.spawnServerFlag = options.ownServer || false;</span>
+<span class="cstat-no" title="statement not covered" >  this.secure = options.secure || false;</span>
+<span class="cstat-no" title="statement not covered" >  this.finalUri = options.finalUri || false;</span>
+<span class="cstat-no" title="statement not covered" >  this.addPort = options.addPort || false;</span>
+<span class="cstat-no" title="statement not covered" >  if (typeof options.clientId !== 'undefined') {</span>
+<span class="cstat-no" title="statement not covered" >    this.clientId = options.clientId;</span>
+  } else {
+<span class="cstat-no" title="statement not covered" >    throw new Error('You have to specify the client id for this to work.');</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (typeof options.clientSecret !== 'undefined') {</span>
+<span class="cstat-no" title="statement not covered" >    this.clientSecret = options.clientSecret;</span>
+  } else {
+<span class="cstat-no" title="statement not covered" >    throw new Error('You have to specify the client secret for this to work.');</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (typeof options.redirectUri !== 'undefined') {</span>
+<span class="cstat-no" title="statement not covered" >    this.redirectUri = options.redirectUri;</span>
+  } else {
+<span class="cstat-no" title="statement not covered" >    throw new Error('You have to specify a uri for this server as MailChimp needs to reach it from the outside.');</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  try {</span>
+<span class="cstat-no" title="statement not covered" >    var packageInfo = fs.readFileSync(__dirname + "/../../package.json");</span>
+  } catch (error) {
+<span class="cstat-no" title="statement not covered" >    throw new Error('Required package file package.json not found for this module.');</span>
+  }
+<span class="cstat-no" title="statement not covered" >    this.packageInfo = JSON.parse(packageInfo.toString());</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    this.on('receivedCode', <span class="fstat-no" title="function not covered" >function (customParams) {</span></span>
+<span class="cstat-no" title="statement not covered" >      self.getAccessToken(customParams);</span>
+    });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    this.on('receivedAccessToken', <span class="fstat-no" title="function not covered" >function (customParams) {</span></span>
+<span class="cstat-no" title="statement not covered" >      self.getMetadata(customParams);</span>
+    });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    this.on('receivedMetadata', <span class="fstat-no" title="function not covered" >function (customParams) {</span></span>
+<span class="cstat-no" title="statement not covered" >      self.emit('authed', customParams);</span>
+    });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (this.spawnServerFlag)</span>
+<span class="cstat-no" title="statement not covered" >      this.spawnServer();</span>
+&nbsp;
+}
+&nbsp;
+util.inherits(MailChimpOAuth, EventEmitter);
+module.exports = MailChimpOAuth;
+&nbsp;
+/**
+ * Spawns a server that listens for incoming GET requests. The url to the
+ * server is passed on to MailChimp as a get parameter to the authorization
+ * form. When a request is received and valid the chain of authorization is set
+ * in motion. This method should not be called directly but will be used
+ * internally when needed.
+ *
+ * @return Nothing. Emits either an 'error' or a 'receivedCode' event
+ */
+MailChimpOAuth.prototype.spawnServer = <span class="fstat-no" title="function not covered" >function () {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  var self = this;</span>
+<span class="cstat-no" title="statement not covered" >  var callback = <span class="fstat-no" title="function not covered" >function (request, response) {</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (request.method != 'GET') {</span>
+<span class="cstat-no" title="statement not covered" >      self.emit('error', {err: 'Received something other than a GET request.', data:undefined});</span>
+<span class="cstat-no" title="statement not covered" >      response.writeHead(500, {'Content-Type': 'text/plain'});</span>
+<span class="cstat-no" title="statement not covered" >      response.end();</span>
+<span class="cstat-no" title="statement not covered" >      return;</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var requestUrl = url.parse(request.url);</span>
+<span class="cstat-no" title="statement not covered" >    var query = querystring.parse(requestUrl.query) || {};</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (typeof query.code !== 'undefined') {</span>
+<span class="cstat-no" title="statement not covered" >      self.emit('receivedCode', query);</span>
+<span class="cstat-no" title="statement not covered" >      if (self.finalUri) {</span>
+<span class="cstat-no" title="statement not covered" >        response.writeHead(302, {'Location': self.finalUri});</span>
+<span class="cstat-no" title="statement not covered" >        response.end();</span>
+      } else {
+<span class="cstat-no" title="statement not covered" >        response.writeHead(204, {'Content-Type': 'text/plain'});</span>
+<span class="cstat-no" title="statement not covered" >        response.end();</span>
+      }
+    } else {
+<span class="cstat-no" title="statement not covered" >      self.emit('error', {err: 'Received a request without a code.', data:query});</span>
+<span class="cstat-no" title="statement not covered" >      response.writeHead(500, {'Content-Type': 'text/plain'});</span>
+<span class="cstat-no" title="statement not covered" >      response.end();</span>
+    }
+  };
+<span class="cstat-no" title="statement not covered" >  var server;</span>
+&nbsp;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (this.secure) {</span>
+<span class="cstat-no" title="statement not covered" >    if (this.secure.key &amp;&amp; this.secure.cert) {</span>
+<span class="cstat-no" title="statement not covered" >      const options = {</span>
+        key: fs.readFileSync(this.secure.key),
+        cert: fs.readFileSync(this.secure.cert)
+      };
+<span class="cstat-no" title="statement not covered" >      server = https.createServer(options, callback);</span>
+    }
+    else {
+<span class="cstat-no" title="statement not covered" >      throw new Error('You have to specify the complete ssl credentials for this to work.with key and code');</span>
+    }
+  }
+&nbsp;
+  else
+<span class="cstat-no" title="statement not covered" >    server = http.createServer(callback);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  server.listen(this.httpPort);</span>
+&nbsp;
+}
+&nbsp;
+/**
+ * handle response from
+ * @return Nothing. Emits either an 'error' or a 'receivedCode' event
+ */
+MailChimpOAuth.prototype.handleOAuthResponse = <span class="fstat-no" title="function not covered" >function (customParams) {</span>
+<span class="cstat-no" title="statement not covered" >  var self = this;</span>
+<span class="cstat-no" title="statement not covered" >  customParams = customParams || {};</span>
+<span class="cstat-no" title="statement not covered" >  if (typeof customParams.code !== 'undefined') {</span>
+<span class="cstat-no" title="statement not covered" >    self.emit('receivedCode', customParams);</span>
+  } else {
+<span class="cstat-no" title="statement not covered" >    self.emit('error', {err: 'Received a request without a code.', data:customParams});</span>
+  }
+};
+&nbsp;
+/**
+ * Assembles and returns a URI the user needs to be send to for authorization,
+ * on that page the MailChimp login form is shown and the user prompted for his
+ * username and password. The URI includes a link to the server spawned while
+ * instantiating MailChimpOAuth.
+ *
+ * @return URI to the autorization page
+ */
+MailChimpOAuth.prototype.getAuthorizeUri = <span class="fstat-no" title="function not covered" >function () {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  var params = {</span>
+    response_type: 'code',
+    client_id: this.clientId,
+    redirect_uri: this.addPort ? this.redirectUri + ':' + this.httpPort : this.redirectUri
+  };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return 'https://login.mailchimp.com/oauth2/authorize?' + querystring.stringify(params);</span>
+&nbsp;
+}
+&nbsp;
+/**
+ * Get the access token from MailChimp once the code for a successful
+ * authorization was received. When the access token was successfully received
+ * an event is emitted which MailChimpOAuth is listening on to request the
+ * OAuth metadata. This method should not be called directly but will be used
+ * internally when needed.
+ *
+ * @return Nothing. Emits either an 'error' or a 'receivedAccessToken' event
+ */
+MailChimpOAuth.prototype.getAccessToken = <span class="fstat-no" title="function not covered" >function (customParams) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  var self = this;</span>
+<span class="cstat-no" title="statement not covered" >  customParams = customParams || {};</span>
+<span class="cstat-no" title="statement not covered" >  if (!customParams.code) {</span>
+<span class="cstat-no" title="statement not covered" >    self.emit('error', {err: 'Code is required in Params', data:customParams});</span>
+<span class="cstat-no" title="statement not covered" >    return;</span>
+  }
+<span class="cstat-no" title="statement not covered" >  var params = {</span>
+    grant_type: 'authorization_code',
+    client_id: this.clientId,
+    client_secret: this.clientSecret,
+    code: customParams.code,
+    redirect_uri: this.addPort ? this.redirectUri + ':' + this.httpPort : this.redirectUri
+  };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  request({</span>
+    uri: 'https://login.mailchimp.com/oauth2/token',
+    method: 'POST',
+    headers: {
+      'User-Agent': 'node-mailchimp/' + this.packageInfo['version'],
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    body: querystring.stringify(params)
+  }, <span class="fstat-no" title="function not covered" >function (error, response, body) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var parsedResponse;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (error) {</span>
+<span class="cstat-no" title="statement not covered" >      self.emit('error', {err: 'Unable to connect to the MailChimp OAuth service.', data:customParams});</span>
+    } else {
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      try {</span>
+<span class="cstat-no" title="statement not covered" >        parsedResponse = JSON.parse(body);</span>
+      } catch (error) {
+<span class="cstat-no" title="statement not covered" >        console.log('[MailChimp] Error parsing JSON answer from the MailChimp getAccessToken API.', body);</span>
+<span class="cstat-no" title="statement not covered" >        self.emit('error', {err: 'Error parsing JSON answer from the MailChimp getAccessToken API.', data:customParams});</span>
+<span class="cstat-no" title="statement not covered" >        return;</span>
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (typeof parsedResponse.access_token !== 'undefined') {</span>
+<span class="cstat-no" title="statement not covered" >        customParams.accessToken = parsedResponse.access_token;</span>
+<span class="cstat-no" title="statement not covered" >        self.emit('receivedAccessToken', customParams);</span>
+      } else {
+<span class="cstat-no" title="statement not covered" >        self.emit('error', {err: 'Answer from MailChimp API does not contain an access token.', data:customParams});</span>
+      }
+&nbsp;
+    }
+&nbsp;
+  });
+&nbsp;
+}
+&nbsp;
+/**
+ * Get metadata from MailChimp once the access token was received. When the
+ * metadata was successfully received an event is emitted which MailChimpOAuth
+ * is listening on to finalize the authentication process. This method should
+ * not be called directly but will be used internally when needed.
+ *
+ * @return Nothing. Emits either an 'error' or a 'receivedMetadata' event
+ */
+MailChimpOAuth.prototype.getMetadata = <span class="fstat-no" title="function not covered" >function (customParams) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  var self = this;</span>
+<span class="cstat-no" title="statement not covered" >  customParams = customParams || {};</span>
+<span class="cstat-no" title="statement not covered" >  if (!customParams.accessToken) {</span>
+<span class="cstat-no" title="statement not covered" >    self.emit('error', {err: 'accessToken is required in Params', data:customParams});</span>
+<span class="cstat-no" title="statement not covered" >    return;</span>
+  }
+<span class="cstat-no" title="statement not covered" >  request({</span>
+    uri: 'https://login.mailchimp.com/oauth2/metadata',
+    headers: {
+      'User-Agent': 'node-mailchimp/' + this.packageInfo['version'],
+      'Authorization': 'OAuth ' + customParams.accessToken
+    }
+  }, <span class="fstat-no" title="function not covered" >function (error, response, body) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    var parsedResponse;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (error) {</span>
+<span class="cstat-no" title="statement not covered" >      self.emit('error', {err: 'Unable to connect to the MailChimp OAuth service.', data:customParams});</span>
+<span class="cstat-no" title="statement not covered" >      return;</span>
+    } else {
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      try {</span>
+<span class="cstat-no" title="statement not covered" >        parsedResponse = JSON.parse(body);</span>
+      } catch (error) {
+<span class="cstat-no" title="statement not covered" >        console.error('[MailChimp] Error parsing JSON answer from the MailChimp getMetadata API.', body);</span>
+<span class="cstat-no" title="statement not covered" >        self.emit('error', {err: 'Error parsing JSON answer from the MailChimp getMetadata API.', data:customParams});</span>
+<span class="cstat-no" title="statement not covered" >        return;</span>
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (typeof parsedResponse.dc !== 'undefined') {</span>
+<span class="cstat-no" title="statement not covered" >        customParams.metadata = parsedResponse;</span>
+<span class="cstat-no" title="statement not covered" >        customParams.apiKey = customParams.accessToken + '-' + customParams.metadata.dc;</span>
+<span class="cstat-no" title="statement not covered" >        self.emit('receivedMetadata', customParams);</span>
+      } else {
+<span class="cstat-no" title="statement not covered" >        self.emit('error', {err: 'Answer from MailChimp API does not contain a datacenter pointer.', data:customParams});</span>
+      }
+&nbsp;
+    }
+&nbsp;
+  });
+&nbsp;
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a> at Fri Apr 21 2017 13:26:31 GMT+0000 (UTC)</div>
+</div>
+</body>
+</html>
